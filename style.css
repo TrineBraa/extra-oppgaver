@@ -2,16 +2,21 @@
     background-color: cadetblue;
 }
 
+
 .books {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: larger;
     cursor: pointer;
     height: 30px;
-    width: 250px;
+    width: 400px;
+    border-radius: 50px;
+    text-align: center;
 }
+
+
 
 .border {
     border: 2px solid purple;
     height: 30px;
-    width: 250px;
+    width: 400px;
 }

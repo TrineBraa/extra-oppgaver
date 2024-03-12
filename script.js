@@ -16,6 +16,8 @@
 
 
 //Modell
+
+
 let LoTR = {
     title: 'Lord of The Rings',
     autor: 'J.R.R. Tolkien',
@@ -51,66 +53,72 @@ let eragon = {
     inStock: false
 }
 
-let inStock = false;
+let bookList = [LoTR, forthWing, beDisliked, wheelOfTime, eragon]
+
+let chosenBook = 1;
 let infoText = document.getElementById("bookInformation");
+let testing = document.getElementById("testerDiv");
 
 //View
 updateView()
 function updateView() {
     document.getElementById("app").innerHTML = /*HTML*/ `
-    <div class="books" id="LoTR" onclick ="selectBook('LoTR')">Lord of the Rings</div>
+    ${printBookTitles()}
     <br/>
-    <div class="books" id="forthWing" onclick ="selectBook('forthWing')">Forth Wing</div>
-    <br/>
-    <div class="books" id="beDisliked" onclick ="selectBook('beDisliked')">The Courage to be Disliked</div>
-    <br/>
-    <div class="books" id="wheelOfTime" onclick ="selectBook('wheelOfTime')">Wheel of Time</div>
-    <br/>
-    <div class="books" id="eragon" onclick ="selectBook('eragon')">Eragon</div>
-    <br/>
-    <button onclick="bookChecks()">more information on the book!</button>
+    <button onclick="printSelectedBookInfo()">more information on the book!</button>
     <br/>
     <br/>
-    <div id="bookInformation"></div>    
-
-
-
+    ${showInfo()}
     `;
 }
 
 //Control
-function selectBook(id) {
-    // en funksjon hvor du klikker på en bok og velder denne, gir det en border eller annen bakgrunn eller noe. 
-    //utfra om instock er true eller false vil det printe ut en annen text. 
-    // ellers vil all infoen om hver bok printes uansett.
-    document.getElementById(id).classList.add("border");
 
+
+// selectBook("LoTR");
+
+function selectBook(id) {
+    chosenBook = id;
     updateView()
 }
 
-function checkAvailible(id) {
-    (inStock = !inStock)
-    if (id.inStock = true) {
-        infoText = '';
+
+function printBookTitles() {
+    let result = '';
+    for (i = 0; i < bookList.length; i++) {
+        if (i == chosenBook) {
+            result += `<div class="books border" onclick="selectBook(${i})">${bookList[i].title}</div>`;
+        } else {
+            result += `<div class="books" onclick="selectBook(${i})">${bookList[i].title}</div>`;
+        }
+
     }
+    console.log(result)
+    return result
 }
 
-function bookChecks() {
-    infoText.innerHTML = /*HTML*/ `
-        <div>${LoTR.title}</div>
-            <li>${LoTR.inStock}</li>
-        <br/>
-        <div>${forthWing.title}</div>
-            <li>${forthWing.inStock}</li>
-        <br/>
-        <div>${beDisliked.title}</div>
-            <li>${beDisliked.inStock}</li>
-        <br/>
-        <div>${wheelOfTime.title}</div>
-            <li>${wheelOfTime.inStock}</li>
-        <br/>
-        <div>${eragon.title}</div>
-            <li>${eragon.inStock}</li>
-        <br/>
-    `;
+
+function showInfo() {
+    let bookInfo = /*HTML*/`
+    <div>Title: ${bookList[chosenBook].title}</div>
+   <div>Autor: ${bookList[chosenBook].autor}</div>
+   <div>Release: ${bookList[chosenBook].year}</div>
+   <div>availible: ${bookList[chosenBook].inStock}</div>
+
+   `;
+    return bookInfo
 }
+
+// function removeBorder() {
+//     document.getElementById("LoTR").classList.remove("border");
+//     document.getElementById("forthWing").classList.remove("border");
+//     document.getElementById("beDisliked").classList.remove("border");
+//     document.getElementById("wheelOfTime").classList.remove("border");
+//     document.getElementById("eragon").classList.remove("border");
+// }
+
+// function printSelectedBookInfo() {
+//     infoText.innerHTML = /*HTML*/`
+//     <div>${chosenBook.title}</div>
+//     `;
+// }
