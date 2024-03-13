@@ -56,8 +56,6 @@ let eragon = {
 let bookList = [LoTR, forthWing, beDisliked, wheelOfTime, eragon]
 
 let chosenBook = 1;
-let infoText = document.getElementById("bookInformation");
-let testing = document.getElementById("testerDiv");
 
 //View
 updateView()
@@ -73,9 +71,6 @@ function updateView() {
 }
 
 //Control
-
-
-// selectBook("LoTR");
 
 function selectBook(id) {
     chosenBook = id;
@@ -100,11 +95,10 @@ function printBookTitles() {
 
 function showInfo() {
     let bookInfo = /*HTML*/`
-    <div>Title: ${bookList[chosenBook].title}</div>
-   <div>Autor: ${bookList[chosenBook].autor}</div>
-   <div>Release: ${bookList[chosenBook].year}</div>
-   <div>availible: ${bookList[chosenBook].inStock}</div>
-
+        <div>Title: ${bookList[chosenBook].title}</div>
+        <div>Autor: ${bookList[chosenBook].autor}</div>
+        <div>Release: ${bookList[chosenBook].year}</div>
+        <div>availible: ${bookList[chosenBook].inStock}</div>
    `;
     return bookInfo
 }
